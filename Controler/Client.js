@@ -114,11 +114,11 @@ exports.updateClient = async (req, res) => {
     if (client === null) {
       return res.status(404).json({ message: "User not found" });
     }
-    console.log(req.body);
+    
     // Mise à jour de l'utilisateur
     await Client.update(req.body, { where: { id: clientId }, raw: true });
 
-    console.log(req.body);
+    
 
     return res.json({ message: "User Updated", dataUpdate: client });
   } catch (err) {
