@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      id_compte: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       type_transaction: {
         type: DataTypes.ENUM("dépôt", "retrait", "transfert", "remboursement"),
         allowNull: false,

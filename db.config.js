@@ -26,16 +26,26 @@ db.Agent = require("./Models/agent")(sequelize);
 
 // *************LES RELATION************************************************
 // *********RELATION ENTRE CLIENT ET COMPTE*********************************
-db.Client.hasMany(db.Transaction, { foreignKey: "id_client" });
-// db.Compte.belongsTo(db.Client, { foreignKey: "id_client" });
-db.Transaction.belongsTo(db.Client, { foreignKey: "id_client" });
-// *********RELATION ENTRE COMPTE ET TRANSACTION****************************
-// db.Compte.hasMany(db.Transaction, { foreignKey: "id_compte" });
-// db.Transaction.belongsTo(db.Compte, { foreignKey: "id_compte" });
 
-db.Compte.hasMany(db.Transaction, { foreignKey: "id_client" });
-
+// === Client → Compte
+db.Client.hasMany(db.Compte, { foreignKey: "id_client" });
 db.Compte.belongsTo(db.Client, { foreignKey: "id_client" });
+
+//db.Client.hasMany(db.Transaction, { foreignKey: "id_client" });
+// db.Compte.belongsTo(db.Client, { foreignKey: "id_client" });
+//db.Transaction.belongsTo(db.Client, { foreignKey: "id_client" });
+
+// *********RELATION ENTRE COMPTE ET TRANSACTION****************************
+
+// === Compte → Transaction
+db.Compte.hasMany(db.Transaction, { foreignKey: "id_compte" });
+db.Transaction.belongsTo(db.Compte, { foreignKey: "id_compte" });
+
+// === Client → Transaction (facultatif mais pratique)
+db.Client.hasMany(db.Transaction, { foreignKey: "id_client" });
+db.Transaction.belongsTo(db.Client, { foreignKey: "id_client" });
+
+
 // *********RELATION ENTRE CLINT ET PRET************************************
 db.Client.hasMany(db.Pret, { foreignKey: "id_client" });
 db.Pret.belongsTo(db.Client, { foreignKey: "id_client" });
